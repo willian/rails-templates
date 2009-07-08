@@ -78,7 +78,7 @@ if yes?("Do you want to use my smtp configuration?")
   
   smtp_address = ask("What is your smtp address?")
   smtp_port = ask("What is your smtp port? (default is 587)")
-  smtp_port = "587" if port.strip!.empty?
+  smtp_port = "587" if smtp_port.strip!.empty?
   user_name = ask("What is yout user name?")
   password = ask("What is your password?")
   
