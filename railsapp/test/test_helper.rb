@@ -45,5 +45,5 @@ end
 %w(factories macros).each do |dirname|
   Dir[File.dirname(__FILE__) + "/#{dirname}/*.rb"].each do |file|
     require file
-  end 
+  end
 end

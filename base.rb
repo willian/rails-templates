@@ -62,10 +62,12 @@ run %(cp #{@railsapp_local_path}public/javascripts/rails.js public/javascripts/)
 
 run %(cp #{@railsapp_local_path}public/stylesheets/application.css public/stylesheets/)
 
-if yes?("Do you want to configurate the root path on routes.rb?")
+if yes?("Do you want to configurate the root path on routes.rb? Answer no if you use my auth rails-template")
   route %(map.root :controller => "home", :action => "index")
 end
 
+run %(echo '' >> config/environments/test.rb)
+run %(echo 'config.active_record.schema_format = :sql' >> config/environments/test.rb)
 run %(echo 'config.gem "redgreen" unless ENV.include?("TM_RUBY")' >> config/environments/test.rb)
 run %(echo 'config.gem "rcov"' >> config/environments/test.rb)
 run %(echo 'config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"' >> config/environments/test.rb)
@@ -89,6 +91,7 @@ end
 if yes?("Do you want to use my smtp configuration?")
   run %(cp #{@railsapp_local_path}lib/smtp_tls.rb lib/)
   
+  run %(echo '' >> config/environment.rb)
   run %(echo '# SMTP Configuration' >> config/environment.rb)
   run %(echo 'require "smtp_tls"' >> config/environment.rb)
   
