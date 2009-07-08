@@ -40,11 +40,13 @@ run %(mkdir lib/tasks)
 run %(wget #{@railsapp_git_url}lib/tasks/rcov.rake && mv rcov.rake lib/tasks/)
 
 run %(mkdir public/javascripts)
+run %(rm public/javascripts/*)
 run %(wget #{@railsapp_git_url}public/javascripts/application.js && mv application.js public/javascripts/)
 run %(wget #{@railsapp_git_url}public/javascripts/jquery.js && mv jquery.js public/javascripts/)
 run %(wget #{@railsapp_git_url}public/javascripts/rails.js && mv rails.js public/javascripts/)
 
 run %(mkdir public/stylesheets)
+run %(rm public/stylesheets/*)
 run %(wget #{@railsapp_git_url}public/stylesheets/application.css && mv application.css public/stylesheets/)
 
 run %(mkdir test/factories)
@@ -73,8 +75,8 @@ end
 if yes?("Do you want to use my smtp configuration?")
   run %(wget #{@railsapp_git_url}lib/smtp_tls.rb && mv smtp_tls.rb lib/)
   
-  run %(echo '# SMTP Configuration' > config/environment.rb)
-  run %(echo 'require "smtp_tls"' > config/environment.rb)
+  run %(echo '# SMTP Configuration' >> config/environment.rb)
+  run %(echo 'require "smtp_tls"' >> config/environment.rb)
   
   smtp_address = ask("What is your smtp address?")
   smtp_port = ask("What is your smtp port? (default is 587)")
@@ -82,13 +84,13 @@ if yes?("Do you want to use my smtp configuration?")
   user_name = ask("What is yout user name?")
   password = ask("What is your password?")
   
-  run %(echo 'ActionMailer::Base.smtp_settings = {' > config/environment.rb)
-  run %(echo '  :address => "#{smtp_address}",' > config/environment.rb)
-  run %(echo '  :port => #{smtp_port},' > config/environment.rb)
-  run %(echo '  :authentication => :plain,' > config/environment.rb)
-  run %(echo '  :user_name => "#{user_name}",' > config/environment.rb)
-  run %(echo '  :password => "#{password}"' > config/environment.rb)
-  run %(echo '}' > config/environment.rb)
+  run %(echo 'ActionMailer::Base.smtp_settings = {' >> config/environment.rb)
+  run %(echo '  :address => "#{smtp_address}",' >> config/environment.rb)
+  run %(echo '  :port => #{smtp_port},' >> config/environment.rb)
+  run %(echo '  :authentication => :plain,' >> config/environment.rb)
+  run %(echo '  :user_name => "#{user_name}",' >> config/environment.rb)
+  run %(echo '  :password => "#{password}"' >> config/environment.rb)
+  run %(echo '}' >> config/environment.rb)
   
   git :add => ".", :commit => "-m 'generated smtp configuration'"
 end
