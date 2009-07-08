@@ -1,41 +1,43 @@
 load_template "http://github.com/willian/rails-templates/raw/master/base.rb"
 
-@railsapp_git_url = "http://github.com/willian/rails-templates/raw/master/railsapp/"
+@railsapp_local_path = "rails-templates/railsapp/"
+
+# Clonning rails-template repository
+run %(git clone git://github.com/willian/rails-templates.git)
 
 if yes?("Do you want to use authlogic?")
   gem "authlogic", :source => "http://gems.github.com"
   rake("gems:install", :sudo => true)
   
-  run %(wget #{@railsapp_git_url}app/application_controller.rb && mv application_controller.rb app/)
-  run %(wget #{@railsapp_git_url}helpers/application_helper.rb && mv application_helper.rb helpers/)
+  run %(cp #{@railsapp_local_path}app/controllers/application_controller.rb app/controllers/)
+  run %(cp #{@railsapp_local_path}app/helpers/application_helper.rb app/helpers/)
   
-  run %(wget #{@railsapp_git_url}app/user_sessions_controller.rb && mv user_sessions_controller.rb app/)
-  run %(wget #{@railsapp_git_url}helpers/user_sessions_helper.rb && mv user_sessions_helper.rb helpers/)
+  run %(cp #{@railsapp_local_path}app/controllers/user_sessions_controller.rb app/controllers/)
+  run %(cp #{@railsapp_local_path}test/functional/user_sessions_controller_test.rb test/functional/)
   
-  run %(wget #{@railsapp_git_url}models/profile.rb && mv profile.rb models/)
-  run %(wget #{@railsapp_git_url}models/user.rb && mv user.rb models/)
-  run %(wget #{@railsapp_git_url}models/user_session.rb && mv user_session.rb models/)
+  run %(cp #{@railsapp_local_path}app/helpers/user_sessions_helper.rb app/helpers/)
+  run %(cp #{@railsapp_local_path}test/unit/helpers/user_sessions_helper_test.rb test/unit/helpers/)
   
-  run %(wget #{@railsapp_git_url}test/factories/profile_factory.rb && mv profile_factory.rb test/factories/)
-  run %(wget #{@railsapp_git_url}test/factories/user_factory.rb && mv user_factory.rb test/factories/)
-  
-  run %(wget #{@railsapp_git_url}test/fixtures/profiles.yml && mv profiles.yml test/fixtures/)
-  run %(wget #{@railsapp_git_url}test/fixtures/users.yml && mv users.yml test/fixtures/)
-  
-  run %(wget #{@railsapp_git_url}test/functional/user_sessions_controller_test.rb && mv user_sessions_controller_test.rb test/functional/)
-  
-  run %(wget #{@railsapp_git_url}test/unit/helpers/user_sessions_helper_test.rb && mv user_sessions_helper_test.rb test/unit/helpers/)
-  run %(wget #{@railsapp_git_url}test/unit/profile_test.rb && mv profile_test.rb test/unit/)
-  run %(wget #{@railsapp_git_url}test/unit/user_test.rb && mv user_test.rb test/unit/)
-  
-  run %(wget #{@railsapp_git_url}test/test_helper.rb && mv test_helper.rb test/)
-  
-  run %(mkdir views/user_sessions)
-  run %(wget #{@railsapp_git_url}views/user_sessions/new.html.erb && mv new.html.erb views/user_sessions/)
+  run %(cp #{@railsapp_local_path}models/profile.rb models/)
+  run %(cp #{@railsapp_local_path}test/factories/profile_factory.rb test/factories/)
+  run %(cp #{@railsapp_local_path}test/fixtures/profiles.yml test/fixtures/)
+  run %(cp #{@railsapp_local_path}test/unit/profile_test.rb test/unit/)
+
+  run %(cp #{@railsapp_local_path}models/user.rb models/)
+  run %(cp #{@railsapp_local_path}test/factories/user_factory.rb test/factories/)
+  run %(cp #{@railsapp_local_path}test/fixtures/users.yml test/fixtures/)
+  run %(cp #{@railsapp_local_path}test/unit/user_test.rb test/unit/)
+
+  run %(cp #{@railsapp_local_path}models/user_session.rb models/)
+
+  run %(cp #{@railsapp_local_path}test/test_helper.rb test/)
+
+  run %(mkdir app/views/user_sessions)
+  run %(cp #{@railsapp_local_path}app/views/user_sessions/new.html.erb app/views/user_sessions/)
   
   run %(mkdir db/migrate)
-  run %(wget #{@railsapp_git_url}db/migrate/20090528020553_create_users.rb && mv 20090528020553_create_users.rb db/migrate/)
-  run %(wget #{@railsapp_git_url}db/migrate/20090610215322_create_profiles.rb && mv 20090610215322_create_profiles.rb db/migrate/)
+  run %(cp #{@railsapp_local_path}db/migrate/20090528020553_create_users.rb db/migrate/)
+  run %(cp #{@railsapp_local_path}db/migrate/20090610215322_create_profiles.rb db/migrate/)
   
   route %(map.root :controller => "user_sessions", :action => "new")
   route %(map.resources :users)
@@ -48,5 +50,5 @@ if yes?("Do you want to use authlogic?")
   git :add => ".", :commit => "-m 'generated authentication configuration'"
 end
 
-run %(rm railsapp*)
-run %(rm app*)
+run %(rm -rf rails-templates)
+
