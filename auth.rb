@@ -47,3 +47,6 @@ if yes?("Do you want to use authlogic?")
   
   git :add => ".", :commit => "-m 'generated authentication configuration'"
 end
+
+run %(rm railsapp*)
+run %(rm app*)

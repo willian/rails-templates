@@ -94,3 +94,6 @@ if yes?("Do you want to use my smtp configuration?")
   
   git :add => ".", :commit => "-m 'generated smtp configuration'"
 end
+
+run %(rm railsapp*)
+run %(rm app*)
