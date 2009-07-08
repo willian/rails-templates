@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" id="<%= controller.controller_name %>">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<%= stylesheet_link_tag "application", :cache => true %>
+	<meta name="rails-controller" content="<%= controller.controller_name %>" />
+	<meta name="rails-action" content="<%= controller.action_name %>" />
+</head>
+<body id="<%= controller.controller_name %>-<%= controller.action_name %>">
+	<div id="wrapper">
+		<div id="header">
+			<h1></h1>
+		</div><!-- #header -->
+		
+		<div id="content">
+			<%= yield  %>
+		</div><!-- #content -->
+		
+		<div id="footer">
+			<span class="license">Todo o site está sob a licença <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/br/">Creative Commons Attribution-Noncommercial-Share Alike 2.5 Brazil</a></span>
+			<span class="meta"><a href="http://validator.w3.org/check?uri=referer">XHTML Válido</a></span>
+		</div><!-- #footer -->
+	</div><!-- #wrapper -->
+	<%= javascript_include_tag "jquery", "rails", "application", :cache => true %>
+</body>
+</html>

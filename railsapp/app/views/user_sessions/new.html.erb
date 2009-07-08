@@ -1,0 +1,18 @@
+<h2>Login</h2>
+
+<% form_for @user_session, :url => user_session_path do |f| %>
+	<fieldset>
+		<legend>Login</legend>
+		<%= f.error_messages %>
+		<label>
+			E-mail:
+			<%= f.text_field :email %>
+		</label>
+
+		<label class="password">
+			Password:
+			<%= f.password_field :password %>
+		</label>
+		<input type="submit" value="Entrar" />
+	</fieldset>
+<% end %>

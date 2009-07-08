@@ -1,0 +1,7 @@
+class HomeController < ApplicationController
+  before_filter before_filter :require_user, :only => :index
+  
+  def index
+    @user = current_user
+  end
+end
