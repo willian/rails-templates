@@ -18,17 +18,17 @@ if yes?("Do you want to use authlogic?")
   run %(cp #{@railsapp_local_path}app/helpers/user_sessions_helper.rb app/helpers/)
   run %(cp #{@railsapp_local_path}test/unit/helpers/user_sessions_helper_test.rb test/unit/helpers/)
   
-  run %(cp #{@railsapp_local_path}models/profile.rb models/)
+  run %(cp #{@railsapp_local_path}app/models/profile.rb app/models/)
   run %(cp #{@railsapp_local_path}test/factories/profile_factory.rb test/factories/)
   run %(cp #{@railsapp_local_path}test/fixtures/profiles.yml test/fixtures/)
   run %(cp #{@railsapp_local_path}test/unit/profile_test.rb test/unit/)
 
-  run %(cp #{@railsapp_local_path}models/user.rb models/)
+  run %(cp #{@railsapp_local_path}app/models/user.rb app/models/)
   run %(cp #{@railsapp_local_path}test/factories/user_factory.rb test/factories/)
   run %(cp #{@railsapp_local_path}test/fixtures/users.yml test/fixtures/)
   run %(cp #{@railsapp_local_path}test/unit/user_test.rb test/unit/)
 
-  run %(cp #{@railsapp_local_path}models/user_session.rb models/)
+  run %(cp #{@railsapp_local_path}app/models/user_session.rb app/models/)
 
   run %(cp #{@railsapp_local_path}test/test_helper.rb test/)
 
