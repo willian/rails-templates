@@ -46,6 +46,8 @@ if yes?("Do you want to use authlogic?")
   route %(map.login '/login', :controller => "user_sessions", :action => "new")
   route %(map.logout '/logout', :controller => "user_sessions", :action => "destroy")
   route %(map.home '/home', :controller => "home", :action => "index")
+
+  run %(rm public/index.html)
   
   git :add => ".", :commit => "-m 'generated authentication configuration'"
 end
