@@ -64,6 +64,7 @@ run %(cp #{@railsapp_local_path}public/stylesheets/application.css public/styles
 
 if yes?("Do you want to configurate the root path on routes.rb? Answer no if you use my auth rails-template")
   route %(map.root :controller => "home", :action => "index")
+  run %(rm public/index.html)
 end
 
 run %(echo '' >> config/environments/test.rb)
