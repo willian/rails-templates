@@ -1,7 +1,5 @@
 @railsapp_local_path = "rails-templates/railsapp/"
 
-git :init
-
 gem "ruby-debug"
 rake("gems:install", :sudo => true)
 
@@ -20,8 +18,13 @@ db/*_structure.sql
 db/schema.*
 log
 tmp/**/*
+rails-templates
 END
 
+run %(rm public/javascripts/*)
+run %(rm public/stylesheets/*)
+
+git :init
 git :add => ".", :commit => "-m 'initial commit'"
 
 # Clonning rails-template repository
@@ -41,9 +44,6 @@ run %(mkdir test/functional)
 run %(mkdir test/unit)
 run %(mkdir test/unit/helpers)
 
-run %(rm public/javascripts/*)
-run %(rm public/stylesheets/*)
-
 run %(cp #{@railsapp_local_path}app/controllers/home_controller.rb app/controllers/)
 run %(cp #{@railsapp_local_path}test/functional/home_controller_test.rb test/functional/)
 
@@ -51,6 +51,11 @@ run %(cp #{@railsapp_local_path}app/helpers/home_helper.rb app/helpers/)
 run %(cp #{@railsapp_local_path}test/unit/helpers/home_helper_test.rb test/unit/helpers/)
 
 run %(cp #{@railsapp_local_path}app/views/home/index.html.erb app/views/home/)
+
+if yes?("Do you want to configurate the root path on routes.rb? Answer no if you use my auth rails-template")
+  route %(map.root :controller => "home", :action => "index")
+  run %(rm public/index.html)
+end
 
 run %(cp #{@railsapp_local_path}app/views/layouts/application.html.erb app/views/layouts/)
 
@@ -61,11 +66,6 @@ run %(cp #{@railsapp_local_path}public/javascripts/jquery.js public/javascripts/
 run %(cp #{@railsapp_local_path}public/javascripts/rails.js public/javascripts/)
 
 run %(cp #{@railsapp_local_path}public/stylesheets/application.css public/stylesheets/)
-
-if yes?("Do you want to configurate the root path on routes.rb? Answer no if you use my auth rails-template")
-  route %(map.root :controller => "home", :action => "index")
-  run %(rm public/index.html)
-end
 
 run %(echo '' >> config/environments/test.rb)
 run %(echo 'config.active_record.schema_format = :sql' >> config/environments/test.rb)
