@@ -20,6 +20,8 @@ db/schema.*
 log
 tmp/**/*
 rails-templates
+public/javascripts/all.js
+public/stylesheets/all.css
 END
 
 run %(rm public/javascripts/*)
