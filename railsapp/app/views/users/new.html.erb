@@ -1,0 +1,23 @@
+<% form_for @user do |f| %>
+	<label>
+		Nome:
+		<%= text_field :profile, :name %>
+	</label>
+	<label>
+		E-mail:
+		<%= f.text_field :email %>
+	</label>
+	<label>
+		Login:
+		<%= f.text_field :login %>
+	</label>
+	<label>
+		Senha:
+		<%= f.password_field :password %>
+	</label>
+	<label>
+		Repita a Senha:
+		<%= f.password_field :password_confirmation %>
+	</label>
+	<%= f.submit "Cadastrar" %>
+<% end %>
