@@ -8,6 +8,7 @@ run "cp config/database.yml config/database.sample.yml"
 file ".gitignore", <<-END
 .DS_Store
 .autotest
+Thumbs.db
 *~
 *.log
 *.pid
