@@ -18,6 +18,12 @@ if yes?("Do you want to use authlogic?")
   run %(cp #{@railsapp_local_path}app/helpers/user_sessions_helper.rb app/helpers/)
   run %(cp #{@railsapp_local_path}test/unit/helpers/user_sessions_helper_test.rb test/unit/helpers/)
   
+  run %(cp #{@railsapp_local_path}app/controllers/users_controller.rb app/controllers/)
+  run %(cp #{@railsapp_local_path}test/functional/users_controller_test.rb test/functional/)
+  
+  run %(cp #{@railsapp_local_path}app/helpers/users_helper.rb app/helpers/)
+  run %(cp #{@railsapp_local_path}test/unit/helpers/users_helper_test.rb test/unit/helpers/)
+  
   run %(cp #{@railsapp_local_path}app/models/profile.rb app/models/)
   run %(cp #{@railsapp_local_path}test/factories/profile_factory.rb test/factories/)
   run %(cp #{@railsapp_local_path}test/fixtures/profiles.yml test/fixtures/)
@@ -34,6 +40,9 @@ if yes?("Do you want to use authlogic?")
 
   run %(mkdir app/views/user_sessions)
   run %(cp #{@railsapp_local_path}app/views/user_sessions/new.html.erb app/views/user_sessions/)
+
+  run %(mkdir app/views/users)
+  run %(cp #{@railsapp_local_path}app/views/users/new.html.erb app/views/users/)
   
   run %(mkdir db/migrate)
   run %(cp #{@railsapp_local_path}db/migrate/20090528020553_create_users.rb db/migrate/)
