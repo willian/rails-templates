@@ -8,7 +8,7 @@ class HomeControllerTest < ActionController::TestCase
         get :index
       end
 
-      should_assign_to :user, :equals => '@user'
+      should_assign_to(:user) { @user }
       should_respond_with :success
     end # context "on GET to :index"
   end # context "HomeController"
