@@ -24,6 +24,12 @@ if yes?("Do you want to use authlogic?")
   run %(cp #{@railsapp_local_path}app/helpers/users_helper.rb app/helpers/)
   run %(cp #{@railsapp_local_path}test/unit/helpers/users_helper_test.rb test/unit/helpers/)
   
+  run %(cp #{@railsapp_local_path}app/controllers/password_resets_controller.rb app/controllers/)
+  run %(cp #{@railsapp_local_path}test/functional/password_resets_controller_test.rb test/functional/)
+  
+  run %(cp #{@railsapp_local_path}app/helpers/password_resets_helper.rb app/helpers/)
+  run %(cp #{@railsapp_local_path}test/unit/helpers/password_resets_helper_test.rb test/unit/helpers/)
+  
   run %(cp #{@railsapp_local_path}app/models/profile.rb app/models/)
   run %(cp #{@railsapp_local_path}test/factories/profile_factory.rb test/factories/)
   run %(cp #{@railsapp_local_path}test/fixtures/profiles.yml test/fixtures/)
@@ -36,6 +42,9 @@ if yes?("Do you want to use authlogic?")
 
   run %(cp #{@railsapp_local_path}app/models/user_session.rb app/models/)
 
+  run %(cp #{@railsapp_local_path}app/models/notifier.rb app/models/)
+  run %(cp #{@railsapp_local_path}test/unit/notifier_test.rb test/unit/)
+
   run %(cp #{@railsapp_local_path}test/test_helper.rb test/)
 
   run %(mkdir app/views/user_sessions)
@@ -43,6 +52,14 @@ if yes?("Do you want to use authlogic?")
 
   run %(mkdir app/views/users)
   run %(cp #{@railsapp_local_path}app/views/users/new.html.erb app/views/users/)
+
+  run %(mkdir app/views/notifier/)
+  run %(cp #{@railsapp_local_path}app/views/notifier/password_reset_instructions.erb app/views/notifier/)
+
+  run %(mkdir app/views/password_resets)
+  run %(cp #{@railsapp_local_path}app/views/password_resets/edit.html.erb app/views/password_resets/)
+  run %(cp #{@railsapp_local_path}app/views/password_resets/new.html.erb app/views/password_resets/)
+  
   
   run %(mkdir db/migrate)
   run %(cp #{@railsapp_local_path}db/migrate/20090528020553_create_users.rb db/migrate/)
