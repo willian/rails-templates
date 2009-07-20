@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   helper :all
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :controller_name, :action_name, :normalized_action_name
   filter_parameter_logging :password, :password_confirmation
   before_filter :set_user_language
   
@@ -44,5 +44,23 @@ class ApplicationController < ActionController::Base
     
     def set_user_language
       I18n.locale = 'pt-BR'
+    end
+
+    ### NORMALIZE ACTION NAME #######################################################################
+    def normalize_action_name
+      normalized_action_name = {
+        "new" => "new",
+        "create" => "new",
+        "edit" => "edit",
+        "update" => "edit",
+        "destroy" => "destroy",
+        "index" => "index",
+        "list" => "index"
+      }[action_name]
+      normalized_action_name || action_name
+    end
+
+    def normalized_action_name
+      @normalized_action_name ||= normalize_action_name
     end
 end
