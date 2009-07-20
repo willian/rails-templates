@@ -67,6 +67,7 @@ if yes?("Do you want to use authlogic?")
   
   route %(map.root :controller => "user_sessions", :action => "new")
   route %(map.resources :users)
+  route %(map.resources :password_resets)
   route %(map.resource :user_session)
   
   route %(map.login '/login', :controller => "user_sessions", :action => "new")
