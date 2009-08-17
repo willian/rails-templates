@@ -31,7 +31,7 @@ git :init
 git :add => ".", :commit => "-m 'initial commit'"
 
 # Clonning rails-template repository
-run %(git clone git://github.com/willian/rails-templates.git)
+run %(git clone http://github.com/willian/rails-templates.git)
 
 # Default Files
 run %(cp #{@railsapp_local_path}config/routes.rb config/)
