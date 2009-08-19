@@ -3,7 +3,7 @@ load_template "http://github.com/willian/rails-templates/raw/master/base.rb"
 @railsapp_local_path = "rails-templates/railsapp/"
 
 # Clonning rails-template repository
-run %(git clone git://github.com/willian/rails-templates.git)
+run %(git clone http://github.com/willian/rails-templates.git)
 
 if yes?("Do you want to use authlogic?")
   gem "authlogic", :source => "http://gems.github.com"
